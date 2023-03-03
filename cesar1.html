@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cifrado César</title>
+  <script>
+    function encrypt() {
+      // Obtener la frase a encriptar
+      var phrase = document.getElementById("phrase").value;
+
+      // Obtener el desplazamiento (clave)
+      var shift = parseInt(document.getElementById("shift").value);
+
+      // Inicializar el resultado encriptado
+      var result = "";
+
+      // Recorrer cada caracter de la frase
+      for (var i = 0; i < phrase.length; i++) {
+        // Obtener el código ASCII del caracter
+        var charCode = phrase.charCodeAt(i);
+
+        // Verificar si el caracter es una letra
+        if (charCode >= 65 && charCode <= 90) {
+          // Aplicar el cifrado César a las letras mayúsculas
+          charCode = ((charCode - 65 + shift) % 26) + 65;
+        } else if (charCode >= 97 && charCode <= 122) {
+          // Aplicar el cifrado César a las letras minúsculas
+          charCode = ((charCode - 97 + shift) % 26) + 97;
+        }
+
+        // Agregar el caracter encriptado al resultado
+        result += String.fromCharCode(charCode);
+      }
+
+      // Mostrar el resultado encriptado en la página web
+      document.getElementById("result").innerHTML = result;
+    }
+
+    function decrypt() {
+      // Obtener la frase a desencriptar
+      var phrase = document.getElementById("phrase").value;
+
+      // Obtener el desplazamiento (clave)
+      var shift = parseInt(document.getElementById("shift").value);
+
+      // Inicializar el resultado desencriptado
+      var result = "";
+
+      // Recorrer cada caracter de la frase
+      for (var i = 0; i < phrase.length; i++) {
+        // Obtener el código ASCII del caracter
+        var charCode = phrase.charCodeAt(i);
+
+        // Verificar si el caracter es una letra
+        if (charCode >= 65 && charCode <= 90) {
+          // Aplicar el cifrado César a las letras mayúsculas
+          charCode = ((charCode - 65 - shift + 26) % 26) + 65;
+        } else if (charCode >= 97 && charCode <= 122) {
+          // Aplicar el cifrado César a las letras minúsculas
+          charCode = ((charCode - 97 - shift + 26) % 26) + 97;
+        }
+
+        // Agregar el caracter desencriptado al resultado
+        result += String.fromCharCode(charCode);
+      }
+
+      // Mostrar el resultado desencriptado en la página web
+      document.getElementById("result").innerHTML = result;
+    }
+  </script>
+ <style>
+    body {
+      background: linear-gradient(to bottom, #87CEEB, #FFC0CB);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 0;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"], input[type="number"] {
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      padding: 5px;
+      width: 100%;
+    }
+
+    button {
+      background-color: #4CAF50;
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+      padding: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #3e8e41;
+    }
+
+    button:active {
+      box-shadow: inset 0 3px 5px rgba(0,0,0,0.5);
+      transform: translateY(3px);
+    }
+
+    #result {
+      font-size: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Cifrado César</h1>
+  <label for="phrase">Frase a encriptar/desencriptar:</label>
+  <input type="text" id="phrase" placeholder="Ingresa tu frase">
+  <br>
+  <label for="shift">Desplazamiento (clave):</label>
+  <input type="number" id="shift" min="1" max="25" value="3">
+  <br>
+  <button onclick="encrypt()">Encriptar</button>
+  <button onclick="decrypt()">Desencriptar</button>
+  <br>
+  <p>Frase encriptada/desencriptada:</p>
+  <p> <span id="result"></span></p>
+ </div>
+</body>
+
+
+</html>
+
+
